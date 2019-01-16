@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { TopicsComponent } from './topics/topics.component';
 import { TopicComponent } from './topics/topic/topic.component';
 
-import { DocumentationService } from './documentation.service';
+import { DocumentationService } from './shared/documentation.service';
 
 @NgModule({
   declarations: [

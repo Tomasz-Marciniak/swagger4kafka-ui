@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {KafkaEndpoint} from './kafka-endpoint.model';
-import {DocumentationService} from '../documentation.service';
+import {KafkaEndpoint} from '../shared/kafka-endpoint.model';
+import {DocumentationService} from '../shared/documentation.service';
 
 @Component({
   selector: 'app-topics',
