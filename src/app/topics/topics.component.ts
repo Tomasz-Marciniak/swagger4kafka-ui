@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {KafkaEndpoint} from './kafka-endpoint.model';
+import {DocumentationService} from '../documentation.service';
 
 @Component({
   selector: 'app-topics',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicsComponent implements OnInit {
 
-  constructor() { }
+  kafkaEndpoints: KafkaEndpoint[];
+
+  constructor(private documentationService: DocumentationService) { }
 
   ngOnInit() {
+    this.kafkaEndpoints = this.documentationService.getKakfaEndpoints();
   }
 
 }
