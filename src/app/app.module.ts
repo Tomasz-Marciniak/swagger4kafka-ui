@@ -6,12 +6,14 @@ import { TopicsComponent } from './topics/topics.component';
 import { TopicComponent } from './topics/topic/topic.component';
 
 import { DocumentationService } from './shared/documentation.service';
+import { ModelComponent } from './model/model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopicsComponent,
-    TopicComponent
+    TopicComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule

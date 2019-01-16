@@ -15,11 +15,7 @@
         <div class="row">
           <div class="col-4">
             <h6>Model</h6>
-            <div class="pl-2 pb-1 pt-1 rounded" style="background-color: lightgrey">
-              <code>
-                <pre>{{ model | json }}</pre>
-              </code>
-            </div>
+            <app-model [model]="model"></app-model>
           </div>
           <div class="col-8">
             <h6>Example Value</h6>

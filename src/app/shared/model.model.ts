@@ -4,6 +4,8 @@ export class Model {
     public properties: {
       [key: string]: {
         type: string,
+        format?: string
+        enum?: any[]
         [key: string]: any
       }
     }

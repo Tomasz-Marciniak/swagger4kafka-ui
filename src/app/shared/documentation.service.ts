@@ -26,9 +26,15 @@ export class DocumentationService {
         },
         uuid: {
           type: 'string',
+          enum: [
+            'foo1',
+            'foo2',
+            'foo3'
+          ],
         },
         customerId: {
           type: 'number',
+          format: 'int64'
         },
       }
     },
