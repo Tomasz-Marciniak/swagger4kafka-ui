@@ -1,3 +1,32 @@
-<p>
-  topic works!
-</p>
+<div class="row mb-2">
+  <div class="col-12">
+    <div class="card bg-light text-dark">
+      <div class="card-header"
+           style="background-color: aliceblue; cursor: pointer;"
+           (click)="isOpen =! isOpen">
+        <h5>
+          <span class="badge mr-2 p-2 text-light" style="background-color: black;">TOPIC</span>
+          {{ endpoint.topic }}
+        </h5>
+      </div>
+      <div class="card-body" *ngIf="isOpen">
+        <h6>{{ endpoint.payloadType }}</h6>
+        <hr>
+        <div class="row">
+          <div class="col-6">
+            <h6>Model</h6>
+          </div>
+          <div class="col-6">
+            <h6>Example Value</h6>
+            <textarea #exampleValue class="form-control" rows="{{ exampleLineCount }}">
+              {{ defaultExampleValue }}
+            </textarea>
+            <hr>
+            <button class="btn btn-primary mr-3" (click)="exampleValue.value = defaultExampleValue">Default</button>
+            <button class="btn btn-primary mr-3">Publish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
