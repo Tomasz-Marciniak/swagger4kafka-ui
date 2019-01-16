@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {KafkaEndpoint} from './topics/kafka-endpoint.model';
+import {Model} from './shared/model.model';
 
 @Injectable()
 export class DocumentationService {
@@ -9,20 +10,49 @@ export class DocumentationService {
       'hostDN': 'string',
       'uuid': 'string',
       'customerId': 0,
-      'siteId': 0,
-      'createdDate': '2015-07-20T15:49:04-07:00',
     }),
     new KafkaEndpoint('topic-2', 'Bar', {
       'hostDN': 'string',
       'uuid': 'string',
-      'mngIp': 'string',
     }),
   ];
+
+  private definitions: { [key: string]: Model } = {
+    Foo: {
+      type: 'object',
+      properties: {
+        hostDN: {
+          type: 'string',
+        },
+        uuid: {
+          type: 'string',
+        },
+        customerId: {
+          type: 'number',
+        },
+      }
+    },
+    Bar: {
+      type: 'object',
+      properties: {
+        hostDN: {
+          type: 'string',
+        },
+        uuid: {
+          type: 'string',
+        },
+      }
+    }
+  };
 
   constructor() { }
 
   getKakfaEndpoints(): KafkaEndpoint[] {
     return this.endpoints;
+  }
+
+  getModel(modelName: string): Model {
+    return this.definitions[modelName];
   }
 
 }

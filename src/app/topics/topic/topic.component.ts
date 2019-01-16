@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {KafkaEndpoint} from '../kafka-endpoint.model';
+import {Model} from '../../shared/model.model';
+import {DocumentationService} from '../../documentation.service';
 
 @Component({
   selector: 'app-topic',
@@ -8,13 +10,15 @@ import {KafkaEndpoint} from '../kafka-endpoint.model';
 })
 export class TopicComponent implements OnInit {
   @Input() private endpoint: KafkaEndpoint;
-  private defaultExampleValue: string;
-  private exampleLineCount: number;
-  private isOpen = false;
+  model: Model;
+  defaultExampleValue: string;
+  exampleLineCount: number;
+  isOpen = false;
 
-  constructor() { }
+  constructor(private documentationService: DocumentationService) { }
 
   ngOnInit() {
+    this.model = this.documentationService.getModel(this.endpoint.payloadType);
     this.defaultExampleValue = JSON.stringify(this.endpoint.payloadExample, null, 2);
     this.exampleLineCount = 1 + this.defaultExampleValue.split('\n').length;
   }

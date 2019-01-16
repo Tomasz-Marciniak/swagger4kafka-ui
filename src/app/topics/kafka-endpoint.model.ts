@@ -1,7 +1,7 @@
 export class KafkaEndpoint {
   constructor(
-    public topic: String,
-    public payloadType: String,
+    public topic: string,
+    public payloadType: string,
     public payloadExample: object
   ) { }
 }
