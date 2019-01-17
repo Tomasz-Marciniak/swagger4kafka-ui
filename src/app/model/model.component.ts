@@ -6,7 +6,9 @@ import {Model} from '../shared/model.model';
   templateUrl: './model.component.html',
 })
 export class ModelComponent implements OnInit {
+  @Input() modelName: string;
   @Input() model: Model;
+  @Input() isOpen = true;
 
   constructor() { }
 

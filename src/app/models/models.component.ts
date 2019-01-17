@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Model} from '../shared/model.model';
+import {DocumentationService} from '../shared/documentation.service';
 
 @Component({
   selector: 'app-models',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModelsComponent implements OnInit {
 
-  constructor() { }
+  models: { [key: string]: Model };
+
+
+  constructor(private documentationService: DocumentationService) { }
 
   ngOnInit() {
+    this.models = this.documentationService.getModels();
   }
 
 }
