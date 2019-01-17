@@ -17,7 +17,7 @@ export class DocumentationService {
     }),
   ];
 
-  private definitions: { [key: string]: Model } = {
+  private models: { [key: string]: Model } = {
     Foo: {
       type: 'object',
       properties: {
@@ -33,8 +33,7 @@ export class DocumentationService {
           ],
         },
         customerId: {
-          type: 'number',
-          format: 'int64'
+          $ref: '/#/definitions/foo',
         },
       }
     },
@@ -58,7 +57,11 @@ export class DocumentationService {
   }
 
   getModel(modelName: string): Model {
-    return this.definitions[modelName];
+    return this.models[modelName];
+  }
+
+  getModels(): { [key: string]: Model } {
+    return this.models;
   }
 
 }
