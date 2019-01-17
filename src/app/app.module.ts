@@ -7,13 +7,15 @@ import { TopicComponent } from './topics/topic/topic.component';
 
 import { DocumentationService } from './shared/documentation.service';
 import { ModelComponent } from './model/model.component';
+import { ModelsComponent } from './models/models.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopicsComponent,
     TopicComponent,
-    ModelComponent
+    ModelComponent,
+    ModelsComponent
   ],
   imports: [
     BrowserModule
