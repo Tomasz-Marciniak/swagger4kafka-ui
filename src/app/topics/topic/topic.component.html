@@ -13,11 +13,11 @@
         <h6>{{ endpoint.payloadType }}</h6>
         <hr>
         <div class="row">
-          <div class="col-4">
+          <div class="col-6">
             <h6>Model</h6>
             <app-model [model]="model"></app-model>
           </div>
-          <div class="col-8">
+          <div class="col-6">
             <h6>Example Value</h6>
             <textarea #exampleValue class="form-control" rows="{{ exampleLineCount }}">
               {{ defaultExampleValue }}
