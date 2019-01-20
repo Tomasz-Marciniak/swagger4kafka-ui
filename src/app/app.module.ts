@@ -6,7 +6,7 @@ import { TopicsComponent } from './topics/topics.component';
 import { TopicComponent } from './topics/topic/topic.component';
 
 import { DocumentationService } from './services/documentation.service';
-import { ModelComponent } from './model/model.component';
+import { ModelComponent } from './models/model/model.component';
 import { ModelsComponent } from './models/models.component';
 import {HttpClientModule} from '@angular/common/http';
 
