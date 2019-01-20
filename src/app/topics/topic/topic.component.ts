@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {KafkaEndpoint} from '../../shared/kafka-endpoint.model';
 import {Model} from '../../shared/model.model';
 import {PublisherService} from '../../services/publisher.service';
+import {ModelsService} from '../../services/models.service';
 
 @Component({
   selector: 'app-topic',
@@ -11,16 +12,23 @@ import {PublisherService} from '../../services/publisher.service';
 })
 export class TopicComponent implements OnInit {
   @Input() endpoint: KafkaEndpoint;
-  @Input() model: Model;
+  model: Model;
 
   defaultExampleValue: string;
   exampleLineCount: number;
 
   isOpen = false;
 
-  constructor(private publisherService: PublisherService) { }
+  constructor(
+    private modelsService: ModelsService,
+    private publisherService: PublisherService
+  ) { }
 
   ngOnInit() {
+    this.modelsService
+      .getModels()
+      .subscribe(models => this.model = models[this.endpoint.payloadModelName]);
+
     this.defaultExampleValue = JSON.stringify(this.endpoint.payloadExample, null, 2);
     this.exampleLineCount = 1 + this.defaultExampleValue.split('\n').length;
   }
