@@ -3,7 +3,7 @@
     <div class="card bg-light text-dark">
       <div class="card-header"
            style="background-color: aliceblue; cursor: pointer;"
-           (click)="isOpen =! isOpen">
+           (click)="isOpen = !isOpen">
         <h5>
           <span class="badge mr-2 p-2 text-light" style="background-color: black;">TOPIC</span>
           {{ endpoint.topic }}
@@ -12,9 +12,6 @@
       <div class="card-body" *ngIf="isOpen">
         <div class="row">
           <div class="col-6">
-            <app-model [modelName]="endpoint.payloadType" [model]="model"></app-model>
-          </div>
-          <div class="col-6">
             <h6>Example Value</h6>
             <textarea #exampleValue class="form-control" rows="{{ exampleLineCount }}">
               {{ defaultExampleValue }}
@@ -22,6 +19,10 @@
             <hr>
             <button class="btn btn-primary mr-3" (click)="exampleValue.value = defaultExampleValue">Default</button>
             <button class="btn btn-primary mr-3">Publish</button>
+          </div>
+          <div class="col-6">
+            <h6>Model</h6>
+            <app-model [modelName]="endpoint.payloadModelName" [model]="model"></app-model>
           </div>
         </div>
       </div>

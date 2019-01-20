@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { TopicsComponent } from './topics/topics.component';
 import { TopicComponent } from './topics/topic/topic.component';
 
-import { DocumentationService } from './shared/documentation.service';
+import { DocumentationService } from './services/documentation.service';
 import { ModelComponent } from './model/model.component';
 import { ModelsComponent } from './models/models.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ModelsComponent } from './models/models.component';
     ModelsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [DocumentationService],
   bootstrap: [AppComponent]

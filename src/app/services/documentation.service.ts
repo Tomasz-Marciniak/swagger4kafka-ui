@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Model} from './model.model';
-import {KafkaEndpoint} from './kafka-endpoint.model';
+import {Model} from '../shared/model.model';
+import {KafkaEndpoint} from '../shared/kafka-endpoint.model';
 
 @Injectable()
 export class DocumentationService {
@@ -57,6 +57,7 @@ export class DocumentationService {
   }
 
   getModel(modelName: string): Model {
+    console.log(modelName);
     return this.models[modelName];
   }
 

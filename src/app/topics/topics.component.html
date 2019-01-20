@@ -10,7 +10,10 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <app-topic *ngFor="let endpoint of kafkaEndpoints" [endpoint]="endpoint"></app-topic>
+        <app-topic
+          *ngFor="let endpoint of kafkaEndpoints"
+          [endpoint]="endpoint"
+          [model]="models[endpoint.payloadModelName]"></app-topic>
       </div>
     </div>
   </div>
