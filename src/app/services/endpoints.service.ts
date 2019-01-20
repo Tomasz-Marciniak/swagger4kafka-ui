@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {KafkaEndpoint} from '../shared/kafka-endpoint.model';
+import {BASE_URL} from '../shared/global';
 
 @Injectable()
 export class EndpointsService {
@@ -10,7 +11,7 @@ export class EndpointsService {
   constructor(private http: HttpClient) { }
 
   getKakfaEndpoints(): Observable<KafkaEndpoint[]> {
-    const url = 'http://172.30.141.19:8080/kafka-api/endpoints';
+    const url = BASE_URL + '/endpoints';
     return this.http
       .get(url)
       .pipe(map(item => item as KafkaEndpoint[]));
