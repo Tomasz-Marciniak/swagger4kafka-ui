@@ -33,12 +33,29 @@ export class TopicComponent implements OnInit {
     this.exampleLineCount = 1 + this.defaultExampleValue.split('\n').length;
   }
 
+  validate(payloadString: string): void {
+    const payload = {
+      className: this.endpoint.payloadClassName,
+      object: JSON.parse(payloadString)
+    };
+
+    this.publisherService
+      .validate(this.endpoint.topic, payload)
+      .subscribe(response => alert(response['message']));
+  }
+
   publish(payloadString: string): void {
-    const payload = JSON.parse(payloadString);
+    const payload = {
+      className: this.endpoint.payloadClassName,
+      object: JSON.parse(payloadString)
+    };
 
     this.publisherService
       .publish(this.endpoint.topic, payload)
-      .subscribe();
+      .subscribe(
+        _ => _,
+        error => alert(error['message'])
+      );
   }
 
 }

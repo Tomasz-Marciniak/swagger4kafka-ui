@@ -8,13 +8,18 @@ export class PublisherService {
 
   constructor(private http: HttpClient) { }
 
-  publish(topic: string, payload: object): Observable<object> {
+  publish(topic: string, payload: { className: string, object: any }): Observable<object> {
     console.log('Publishing ' + JSON.stringify(payload) + ' to ' + topic);
 
     const params = new HttpParams().set('topic', topic);
 
     return this.http
       .post(BASE_URL + '/publish', payload, { params });
+  }
+
+  validate(topic: string, payload: { className: string; object: any }) {
+    return this.http
+      .post(BASE_URL + '/validate', payload);
   }
 
 }

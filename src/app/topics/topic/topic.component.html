@@ -8,6 +8,7 @@
           <span class="badge mr-2 p-2 text-light" style="background-color: black;">TOPIC</span>
           {{ endpoint.topic }}
         </h5>
+        {{ endpoint.payloadClassName }}
       </div>
       <div class="card-body" *ngIf="isOpen">
         <div class="row">
@@ -18,6 +19,7 @@
             </textarea>
             <hr>
             <button class="btn btn-primary mr-3" (click)="exampleValue.value = defaultExampleValue">Default</button>
+            <button class="btn btn-primary mr-3" (click)="validate(exampleValue.value)">Validate</button>
             <button class="btn btn-primary mr-3" (click)="publish(exampleValue.value)">Publish</button>
           </div>
           <div class="col-6">
