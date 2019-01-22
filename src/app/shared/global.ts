@@ -1,2 +1,2 @@
-const BASE_URL = 'http://172.30.141.19:8080/kafka-api';
+const BASE_URL = 'kafka-api';
 export { BASE_URL };
