@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to k4s-ui!');
+    expect(page.getTitleText()).toEqual('Welcome to swagger4kafka-ui!');
   });
 });

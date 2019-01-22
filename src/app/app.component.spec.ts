@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'k4s-ui'`, () => {
+  it(`should have as title 'swagger4kafka-ui'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('k4s-ui');
+    expect(app.title).toEqual('swagger4kafka-ui');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to k4s-ui!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to swagger4kafka-ui!');
   });
 });
