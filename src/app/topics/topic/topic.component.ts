@@ -8,7 +8,10 @@ import {ModelsService} from '../../services/models.service';
   selector: 'app-topic',
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.css'],
-  providers: [PublisherService]
+  providers: [
+    ModelsService,
+    PublisherService
+  ]
 })
 export class TopicComponent implements OnInit {
   @Input() endpoint: KafkaEndpoint;
