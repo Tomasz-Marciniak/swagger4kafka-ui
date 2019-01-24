@@ -13,16 +13,26 @@
       <div class="card-body" *ngIf="isOpen">
         <div class="row">
           <div class="col-6">
-            <h6>Example Value</h6>
+            <h6>
+              Example Value
+              <span *ngIf="isValidExample" class="font-italic" style="color: limegreen;">valid</span>
+              <span *ngIf="!isValidExample" class="font-italic" style="color: indianred;">invalid</span>
+            </h6>
             <textarea
               #exampleValue
               class="form-control"
               rows="{{ defaultExample.lineCount }}"
-              [value]="defaultExample.value"></textarea>
+              [value]="defaultExample.value"
+              (keyup)="changeExample.next(exampleValue.value)"></textarea>
+            <p *ngIf="!isValidExample" class="mt-2 pl-1">{{ invalidMessage }}</p>
             <hr>
-            <button class="btn btn-primary mr-3" (click)="exampleValue.value = defaultExample.value">Default</button>
-            <button class="btn btn-primary mr-3" (click)="validate(exampleValue.value)">Validate</button>
-            <button class="btn btn-primary mr-3" (click)="publish(exampleValue.value)">Publish</button>
+            <button
+              class="btn btn-primary mr-3"
+              (click)="exampleValue.value = defaultExample.value; isValidExample=true;">Default</button>
+            <button
+              [disabled]="!isValidExample"
+              class="btn btn-primary mr-3"
+              (click)="publish(exampleValue.value)">Publish</button>
           </div>
           <div class="col-6">
             <h6>Model</h6>

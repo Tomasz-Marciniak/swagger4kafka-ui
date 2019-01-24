@@ -4,6 +4,8 @@ import {Model} from '../../shared/model.model';
 import {PublisherService} from '../../services/publisher.service';
 import {ModelsService} from '../../services/models.service';
 import {Example} from './example';
+import {Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-topic',
@@ -20,9 +22,14 @@ export class TopicComponent implements OnInit {
   defaultExample: Example;
   isOpen = false;
 
+  isValidExample = true;
+  invalidMessage: string;
+
+  changeExample = new Subject<string>();
+
   constructor(
     private modelsService: ModelsService,
-    private publisherService: PublisherService
+    private publisherService: PublisherService,
   ) { }
 
   ngOnInit() {
@@ -31,17 +38,34 @@ export class TopicComponent implements OnInit {
       .subscribe(models => this.model = models[this.endpoint.payloadModelName]);
 
     this.defaultExample = new Example(this.endpoint.payloadExample);
+
+    this.changeExample
+      .pipe(debounceTime(500))
+      .pipe(distinctUntilChanged())
+      .subscribe(value => this.validate(value));
   }
 
   validate(payloadString: string): void {
+    let json;
+    try {
+      json = JSON.parse(payloadString);
+    } catch (e) {
+      this.isValidExample = false;
+      this.invalidMessage = 'Failed to parse example';
+      return;
+    }
+
     const payload = {
       className: this.endpoint.payloadClassName,
-      object: JSON.parse(payloadString)
+      object: json
     };
 
     this.publisherService
       .validate(this.endpoint.topic, payload)
-      .subscribe(response => alert(response['message']));
+      .subscribe(response => {
+        this.isValidExample = response['valid'];
+        this.invalidMessage = response['message'];
+      });
   }
 
   publish(payloadString: string): void {
