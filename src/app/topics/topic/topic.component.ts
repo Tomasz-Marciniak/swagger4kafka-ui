@@ -22,7 +22,7 @@ export class TopicComponent implements OnInit {
   defaultExample: Example;
   isOpen = false;
 
-  isValidExample = true;
+  isValidExample: boolean;
   invalidMessage: string;
 
   changeExample = new Subject<string>();
@@ -38,6 +38,7 @@ export class TopicComponent implements OnInit {
       .subscribe(models => this.model = models[this.endpoint.payloadModelName]);
 
     this.defaultExample = new Example(this.endpoint.payloadExample);
+    this.validate(this.defaultExample.value);
 
     this.changeExample
       .pipe(debounceTime(500))

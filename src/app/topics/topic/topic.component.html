@@ -28,7 +28,7 @@
             <hr>
             <button
               class="btn btn-primary mr-3"
-              (click)="exampleValue.value = defaultExample.value; isValidExample=true;">Default</button>
+              (click)="exampleValue.value = defaultExample.value; validate(defaultExample.value);">Default</button>
             <button
               [disabled]="!isValidExample"
               class="btn btn-primary mr-3"
