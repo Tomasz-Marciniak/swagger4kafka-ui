@@ -14,9 +14,11 @@
         <div class="row">
           <div class="col-6">
             <h6>Example Value</h6>
-            <textarea #exampleValue class="form-control" rows="{{ defaultExample.lineCount }}">
-              {{ defaultExample.value }}
-            </textarea>
+            <textarea
+              #exampleValue
+              class="form-control"
+              rows="{{ defaultExample.lineCount }}"
+              [value]="defaultExample.value"></textarea>
             <hr>
             <button class="btn btn-primary mr-3" (click)="exampleValue.value = defaultExample.value">Default</button>
             <button class="btn btn-primary mr-3" (click)="validate(exampleValue.value)">Validate</button>
