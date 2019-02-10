@@ -1,7 +1,13 @@
 plugins {
   id 'java'
   id 'com.moowork.node' version '1.2.0'
+  id 'maven'
+  id 'signing'
 }
+
+group = 'com.stavshamir'
+archivesBaseName = 'swagger4kafka-ui'
+version = '1.0.0'
 
 node {
   version = '9.2.0'
@@ -12,4 +18,53 @@ node {
 jar {
   dependsOn 'npm_run_build'
   metaInf { from 'dist/swagger4kafka-ui' into 'resources' }
+}
+
+signing {
+  sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.artifactId = 'swagger4kafka-ui'
+      pom.project {
+        name 'swagger4kafka-ui'
+        packaging 'jar'
+        url 'https://github.com/stavshamir/swagger4kafka-ui'
+        description 'A frontend for Swagger4Kafka - automated JSON API documentation for Kafka Listeners built with Spring'
+
+        scm {
+          url 'https://github.com/stavshamir/swagger4kafka-ui'
+          connection 'scm:git:git://github.com/stavshamir/swagger4kafka-ui.git'
+          developerConnection 'scm:git:https//github.com/stavshamir/swagger4kafka-ui.git'
+        }
+
+        licenses {
+          license {
+            name 'The Apache License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'stavshamir'
+            name 'Stav Shamir'
+            email 'shamir.stav@gmail.com'
+          }
+        }
+      }
+    }
+  }
 }
